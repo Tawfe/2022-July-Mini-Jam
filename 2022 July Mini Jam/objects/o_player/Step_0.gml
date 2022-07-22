@@ -13,6 +13,7 @@ else
 }
 //Calculate Movement
 var move = key_right - key_left;
+if move > 0 image_xscale = 1 else if move < 0 image_xscale = -1
 hsp = move * walksp;
 
 //Gravity
@@ -178,7 +179,7 @@ if (place_meeting(x, y+vsp, o_platform))
 			vsp = -key_up
 		}
 	}
-	if instance_exists(o_rock)
+	if instance_exists(o_rock) //Rock Throwing
 	{
 		if global.rock_in_range && keyboard_check_pressed(ord("E"))
 		{
@@ -189,6 +190,10 @@ if (place_meeting(x, y+vsp, o_platform))
 			global.has_rock = false
 			global.throw_rock =  true
 		}
+	}
+	if global.p_color == "bw" && keyboard_check_pressed(ord("T"))
+	{
+		global.key_reveal = true
 	}
 	
 	x += hsp;

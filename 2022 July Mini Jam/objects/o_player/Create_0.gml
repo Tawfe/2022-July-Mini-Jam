@@ -21,4 +21,5 @@ global.red_ability = false
 s_cd = 60*2 // 60 * 5 default
 global.switching_cooldown = 0 //60*5 seconds cooldown
 global.is_punching = false
+global.key_reveal = false
 x_prev = x

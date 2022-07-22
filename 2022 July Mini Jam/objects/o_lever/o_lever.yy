@@ -1,6 +1,9 @@
 {
-  "name": "o_game",
-  "spriteId": null,
+  "name": "o_lever",
+  "spriteId": {
+    "name": "s_lever",
+    "path": "sprites/s_lever/s_lever.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
   "solid": false,
@@ -21,8 +24,7 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"o_rock","path":"objects/o_rock/o_rock.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

@@ -41,4 +41,9 @@ if global.throw_rock
 }
 
 y += _kvsp 
-x += lengthdir_x(_khsp,0)// make the rock get thrown based on the direction player is facing
+
+// make the rock get thrown based on the direction player is facing
+if o_player.image_xscale == 1
+x += lengthdir_x(_khsp,0)
+else if o_player.image_xscale == -1
+x -= lengthdir_x(_khsp,0)
