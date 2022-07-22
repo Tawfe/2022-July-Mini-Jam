@@ -4,6 +4,11 @@ grv = 0.3;
 walksp = 4;
 hascontrol = true;
 canjump = 0;
+jump_count = 1
+//Objects that can have vertical collision
+vc_objects[0] = o_platform
+vc_objects[1] = o_door_trigger
+vc_objects[2] = o_walls
 
 
 global.p_color = "Red"

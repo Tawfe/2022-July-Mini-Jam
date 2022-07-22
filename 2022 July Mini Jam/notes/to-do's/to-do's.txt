@@ -1,2 +1,4 @@
 - Wall tiles with no top and bottom edges, and different frames represent the wall being hit
 (DONE) - key dropping when E is pressed
+- animation for key thrown instead of destroy when unlocking door
+- doors/frames 32x32

@@ -22,3 +22,34 @@ else
 	
 	y += _kvsp //gravity when key is dropped
 }
+
+if global.key_color == "Red"
+{
+	sprite_index = s_key_red
+}
+if global.key_color == "Blue"
+{
+	sprite_index = s_key_blue
+}
+if global.key_color == "Green"
+{
+	sprite_index = s_key_green
+}
+if global.key_color == "Yellow"
+{
+	sprite_index = s_key_yellow
+}
+if global.key_color == "bw"
+{
+	sprite_index = s_key_bw
+}
+if global.key_color == "Rainbow"
+{
+	sprite_index = s_key_rainbow
+}
+if global.key_color == "Orange"
+{
+	sprite_index = s_key_orange
+}
+
+if global.door_opened instance_destroy() // animation for key thrown instead of destroy

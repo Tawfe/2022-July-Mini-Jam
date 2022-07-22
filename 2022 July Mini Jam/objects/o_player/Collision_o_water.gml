@@ -1,0 +1,1 @@
+if global.p_color != "Blue" room_restart()
