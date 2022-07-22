@@ -175,6 +175,10 @@ if (place_meeting(x, y+vsp, o_platform))
 			vsp = -key_up
 		}
 	}
+	if instance_exists(o_basketball)
+	{
+		//
+	}
 	
 	x += hsp;
 	y += vsp;
