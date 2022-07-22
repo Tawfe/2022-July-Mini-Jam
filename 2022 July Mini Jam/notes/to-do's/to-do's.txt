@@ -1,2 +1,2 @@
 - Wall tiles with no top and bottom edges, and different frames represent the wall being hit
-- key dropping when E is pressed
+(DONE) - key dropping when E is pressed

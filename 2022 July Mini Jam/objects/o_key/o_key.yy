@@ -1,8 +1,8 @@
 {
   "name": "o_key",
   "spriteId": {
-    "name": "s_key",
-    "path": "sprites/s_key/s_key.yy",
+    "name": "s_key_yellow",
+    "path": "sprites/s_key_yellow/s_key_yellow.yy",
   },
   "spriteMaskId": null,
   "visible": true,
@@ -25,6 +25,7 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

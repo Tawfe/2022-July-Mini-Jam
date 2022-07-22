@@ -123,14 +123,17 @@ if (place_meeting(x+hsp, y, o_walls))
 		
 		if x <= x_prev - 5 global.is_punching = false
 	}
-	show_debug_message(x)
+	//show_debug_message(x)
 	#endregion
 	#region//Key Pickup
 	if global.key_in_range && keyboard_check_pressed(ord("E"))
 	{
 		global.has_key = true
 	}
-	
+	if global.has_key && keyboard_check_pressed(ord("Q"))
+	{
+		global.has_key = false
+	}
 	#endregion
 	x += hsp;
 	y += vsp;

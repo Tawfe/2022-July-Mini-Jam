@@ -1,6 +1,6 @@
 draw_set_valign(fa_center)
 draw_set_halign(fa_middle)
-//draw_text(80,80, global.p_color)
+//draw_text_transformed(80,80, global.p_color)
 
 if global.p_color == "Red" //Selected
 {
@@ -9,7 +9,7 @@ if global.p_color == "Red" //Selected
 }
 else
 {
-	draw_text(40,20,"1")
+	draw_text_transformed(40,20,"1",0.5,0.5,0)
 	draw_sprite_ext(s_red_selector,0,40,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
@@ -20,7 +20,7 @@ if global.p_color == "Blue" //Selected
 }
 else
 {
-	draw_text(80,20,"2")
+	draw_text_transformed(80,20,"2",0.5,0.5,0)
 	draw_sprite_ext(s_blue_selector,0,80,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
@@ -31,7 +31,7 @@ if global.p_color == "Yellow" //Selected
 }
 else
 {
-	draw_text(120,20,"3")
+	draw_text_transformed(120,20,"3",0.5,0.5,0)
 	draw_sprite_ext(s_yellow_selector,0,120,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
@@ -42,7 +42,7 @@ if global.p_color == "Orange" //Selected
 }
 else
 {
-	draw_text(160,20,"4")
+	draw_text_transformed(160,20,"4",0.5,0.5,0)
 	draw_sprite_ext(s_orange_selector,0,160,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
@@ -53,7 +53,7 @@ if global.p_color == "Green" //Selected
 }
 else
 {
-	draw_text(200,20,"5")
+	draw_text_transformed(200,20,"5",0.5,0.5,0)
 	draw_sprite_ext(s_green_selector,0,200,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
@@ -64,7 +64,7 @@ if global.p_color == "bw" //Selected (Black and White)
 }
 else
 {
-	draw_text(240,20,"6")
+	draw_text_transformed(240,20,"6",0.5,0.5,0)
 	draw_sprite_ext(s_bw_selector,0,240,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
@@ -75,7 +75,7 @@ if global.p_color == "Rainbow" //Selected
 }
 else
 {
-	draw_text(280,20,"7")
+	draw_text_transformed(280,20,"7",0.5,0.5,0)
 	draw_sprite_ext(s_rainbow_selector,0,280,40,1,1,0,c_white,1)
 }
 
