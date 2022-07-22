@@ -1,5 +1,5 @@
 {
-  "name": "o_basketball",
+  "name": "o_rock",
   "spriteId": {
     "name": "s_basketball",
     "path": "sprites/s_basketball/s_basketball.yy",

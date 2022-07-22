@@ -61,9 +61,12 @@ for(var i = 0; i < array_length(vc_objects); i++)
 //Vertical Collision	
 if (place_meeting(x, y+vsp, o_platform)) 
 {
-	canjump = 10
-	if global.p_color != "Yellow" && jump_count <= 0 jump_count = 1
-	if global.p_color == "Yellow" && jump_count <= 0 jump_count = 2 // set up is in color change region
+	if (place_meeting(x, bbox_bottom, o_platform)) // to prevent multi-jump when hitting the roof
+	{
+		canjump = 10
+		if global.p_color != "Yellow" && jump_count <= 0 jump_count = 1
+		if global.p_color == "Yellow" && jump_count <= 0 jump_count = 2 // set up is in color change region
+	}
 	while (!place_meeting(x, y+sign(vsp), o_platform)) 
 	{
 		y += sign(vsp);
@@ -175,9 +178,17 @@ if (place_meeting(x, y+vsp, o_platform))
 			vsp = -key_up
 		}
 	}
-	if instance_exists(o_basketball)
+	if instance_exists(o_rock)
 	{
-		//
+		if global.rock_in_range && keyboard_check_pressed(ord("E"))
+		{
+			global.has_rock = true
+		}
+		if global.has_rock && keyboard_check_pressed(ord("F"))
+		{
+			global.has_rock = false
+			global.throw_rock =  true
+		}
 	}
 	
 	x += hsp;
