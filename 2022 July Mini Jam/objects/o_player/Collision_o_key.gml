@@ -1,0 +1,1 @@
+instance_destroy(other) // key collect is in key clean up event
