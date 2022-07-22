@@ -1,8 +1,8 @@
 {
-  "name": "o_red_obstacle",
+  "name": "o_walls",
   "spriteId": {
-    "name": "s_red_obstacle",
-    "path": "sprites/s_red_obstacle/s_red_obstacle.yy",
+    "name": "s_wall_1",
+    "path": "sprites/s_wall_1/s_wall_1.yy",
   },
   "spriteMaskId": null,
   "visible": true,

@@ -52,61 +52,85 @@ if (place_meeting(x, y+vsp, o_platform))
 	
 	
 //Red Obscale collision
-if (place_meeting(x+hsp, y, o_red_obstacle)) 
+if (place_meeting(x+hsp, y, o_walls)) 
 {
-	if !global.red_ability
-	{
-		while (!place_meeting(x+sign(hsp), y, o_red_obstacle)) 
+	
+		while (!place_meeting(x+sign(hsp), y, o_walls)) 
 		{
 			x += sign(hsp);
 		}
 	
 		hsp = 0;
-	}
+	
 }	
 //Blue Obscale collision
 //Kill the player if he attempts to go in blue obstacle without being blue
 	
 	//Color Changing
-	switching_cooldown--
+	if global.switching_cooldown > 0 global.switching_cooldown--
 	if global.p_color == "Red" global.red_ability = true else global.red_ability = false
 	
-	if keyboard_check_pressed(ord("1")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("1")) && global.switching_cooldown <= 0
 	{
 		global.p_color = "Red";
 		global.red_ability = true
-		switching_cooldown = 60*5;
+		global.switching_cooldown = s_cd;
 	}
-	if keyboard_check_pressed(ord("2")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("2")) && global.switching_cooldown <= 0
 	{
 		global.p_color = "Blue"; 
-		switching_cooldown = 60*5; 
+		global.switching_cooldown = s_cd; 
 	}
-	if keyboard_check_pressed(ord("3")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("3")) && global.switching_cooldown <= 0
 	{
 		global.p_color = "Orange";
-		switching_cooldown = 60*5;
+		global.switching_cooldown = s_cd;
 	}
-	if keyboard_check_pressed(ord("4")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("4")) && global.switching_cooldown <= 0
 	{
 		global.p_color = "Yellow"; 
-		switching_cooldown = 60*5; 
+		global.switching_cooldown = s_cd; 
 	}
-	if keyboard_check_pressed(ord("5")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("5")) && global.switching_cooldown <= 0
 	{
 		global.p_color = "Green";
-		switching_cooldown = 60*5;
+		global.switching_cooldown = s_cd;
 	}
-	if keyboard_check_pressed(ord("6")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("6")) && global.switching_cooldown <= 0
 	{
-		global.p_color = "Black & White"; 
-		switching_cooldown = 60*5; 
+		global.p_color = "bw"; //Black and White
+		global.switching_cooldown = s_cd; 
 	}
-	if keyboard_check_pressed(ord("7")) && switching_cooldown <= 0
+	if keyboard_check_pressed(ord("7")) && global.switching_cooldown <= 0
 	{
 		global.p_color = "Rainbow";
-		switching_cooldown = 60*5;
+		global.switching_cooldown = s_cd;
 	}
-
+	
+	
+	#region//Punching
+	if !global.is_punching x_prev = x
+	if global.p_color == "Red" && keyboard_check_pressed(ord("F"))
+	{
+		global.is_punching = true
+		
+		x += 20	
+	}
+	
+	if global.is_punching
+	{
+		x = lerp(x,x_prev,0.1)
+		
+		if x <= x_prev - 5 global.is_punching = false
+	}
+	show_debug_message(x)
+	#endregion
+	#region//Key Pickup
+	if global.key_in_range && keyboard_check_pressed(ord("E"))
+	{
+		global.has_key = true
+	}
+	
+	#endregion
 	x += hsp;
 	y += vsp;
