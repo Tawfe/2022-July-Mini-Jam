@@ -3,8 +3,8 @@ if _range global.key_in_range = true else global.key_in_range = false
 
 if global.has_key
 {
-	x = o_player.x+3
-	y = o_player.y-4
+	x = o_player.x
+	y = o_player.y-10
 }
 else
 {
@@ -39,9 +39,9 @@ if global.key_color == "Yellow"
 {
 	sprite_index = s_key_yellow
 }
-if global.key_color == "bw"
+if global.key_color == "Grey"
 {
-	sprite_index = s_key_bw
+	sprite_index = s_key_grey
 }
 if global.key_color == "Rainbow"
 {

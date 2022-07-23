@@ -33,9 +33,9 @@ if global.lock_color == "Yellow"
 {
 	sprite_index = s_lock_yellow
 }
-if global.lock_color == "bw"
+if global.lock_color == "Grey"
 {
-	sprite_index = s_lock_bw
+	sprite_index = s_lock_grey
 }
 if global.lock_color == "Rainbow"
 {

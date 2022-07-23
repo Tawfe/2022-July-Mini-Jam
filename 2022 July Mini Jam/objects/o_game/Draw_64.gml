@@ -57,15 +57,15 @@ else
 	draw_sprite_ext(s_green_selector,0,200,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
-if global.p_color == "bw" //Selected (Black and White)
+if global.p_color == "Grey" //Selected (Black and White)
 {
-	draw_sprite_ext(s_bw_selector,1,240,43,1,1,0,c_white,1)
+	draw_sprite_ext(s_grey_selector,1,240,43,1,1,0,c_white,1)
 	draw_text_transformed(240,63, "Selected",0.5,0.5,0)
 }
 else
 {
 	draw_text_transformed(240,20,"6",0.5,0.5,0)
-	draw_sprite_ext(s_bw_selector,0,240,40,1,1,0,c_white,1)
+	draw_sprite_ext(s_grey_selector,0,240,40,1,1,0,c_white,1)
 }
 //-----------------------------------------------------------------
 if global.p_color == "Rainbow" //Selected

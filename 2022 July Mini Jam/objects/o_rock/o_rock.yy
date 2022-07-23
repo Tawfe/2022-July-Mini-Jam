@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "s_basketball",
-    "path": "sprites/s_basketball/s_basketball.yy",
+    "name": "s_rock",
+    "path": "sprites/s_rock/s_rock.yy",
   },
   "solid": false,
   "visible": true,

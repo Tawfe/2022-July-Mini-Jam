@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "s_door_trigger",
-    "path": "sprites/s_door_trigger/s_door_trigger.yy",
+    "name": "s_blue_door",
+    "path": "sprites/s_blue_door/s_blue_door.yy",
   },
   "solid": false,
   "visible": true,
@@ -23,6 +23,7 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

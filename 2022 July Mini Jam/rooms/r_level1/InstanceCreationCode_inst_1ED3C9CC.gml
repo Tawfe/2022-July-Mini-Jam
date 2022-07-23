@@ -1,0 +1,1 @@
+global.lock_color = "Blue"
