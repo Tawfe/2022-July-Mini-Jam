@@ -19,10 +19,12 @@ global.has_rock = false
 global.throw_rock = false
 global.red_ability = false
 s_cd = 60*2 // 60 * 5 default
+d_cd = 60
 global.switching_cooldown = 0 //60*5 seconds cooldown
 global.is_punching = false
 global.key_reveal = false
 global.ability_on = false
-
-_act = 20
+global.vinegate_open = false
+global.death = false
+lighting_on = false
 trunk_collide = false

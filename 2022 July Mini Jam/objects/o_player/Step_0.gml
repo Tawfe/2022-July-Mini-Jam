@@ -190,7 +190,7 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	#endregion
 	#region //Animation
-	if !global.ability_on
+	if !global.ability_on && !global.death
 	{
 		if hsp == 0 && global.p_color = "Red"
 		{
@@ -210,6 +210,16 @@ if (place_meeting(x, y+vsp, o_platform))
 		{
 			
 			sprite_index = s_blue_run;
+		}
+		else if hsp == 0 && global.p_color = "Yellow"
+		{
+			
+			sprite_index = s_yellow_idle;
+		}
+		else if hsp != 0 && global.p_color = "Yellow"
+		{
+			
+			sprite_index = s_yellow_run;
 		}
 		else if hsp == 0 && global.p_color = "Green"
 		{
@@ -285,21 +295,46 @@ if (place_meeting(x, y+vsp, o_platform))
 		global.key_reveal = true
 	}
 	#region // Swimming Ability
-	if global.p_color == "Blue" && place_meeting(x,y,o_water)
+	if (global.p_color == "Blue" || global.p_color == "Rainbow") && place_meeting(x,y,o_water)
 	{
 		global.ability_on = true
-		sprite_index = s_blue_swim
+		if global.p_color == "Blue" sprite_index = s_blue_swim
+		if global.p_color == "Rainbow" sprite_index = s_rainbow_swim
 	}
-	else if global.p_color == "Blue" && !place_meeting(x,y,o_water)
+	else if (global.p_color != "Blue" || global.p_color != "Rainbow") && !place_meeting(x,y,o_water)
 	{
-		global.ability_on = false
+		if sprite_index == s_blue_swim global.ability_on = false
+		if sprite_index == s_rainbow_swim global.ability_on = false
 	}
-	else if global.p_color != "Blue" && place_meeting(x,y,o_water)
+	else if (global.p_color != "Blue" || global.p_color != "Rainbow") && place_meeting(x,y,o_water)
 	{
-		reTarget = room
-		TransitionStart(reTarget, sqFadedeathOut, sqFadedeathIn)
-		room_restart()
+		
+		global.death = true
+		if !lighting_on 
+		{
+			lighting_on = true
+			instance_create_layer(x,y,"Instances",o_lighting)
+			walksp = 0	
+		}
+		
 	}
 	#endregion
+	#region Death / correlated with water for now
+	if place_meeting(x,y,o_lighting) sprite_index = s_death_anim
+	if sprite_index == s_death_anim && image_index > 6 
+	{
+		image_speed = 0
+		if global.has_key global.has_key = false
+		if global.has_rock global.has_rock = false
+		d_cd--
+		if d_cd <= 0
+		{
+			reTarget = room
+			TransitionStart(reTarget, sqFadedeathOut, sqFadedeathIn)
+			room_restart()
+		}
+	}
+	#endregion
+	
 	x += hsp;
 	y += vsp;

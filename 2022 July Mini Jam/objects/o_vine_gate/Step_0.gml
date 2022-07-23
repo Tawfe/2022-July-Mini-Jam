@@ -1,0 +1,1 @@
+if global.vinegate_open instance_destroy() //animate it instead of destroy

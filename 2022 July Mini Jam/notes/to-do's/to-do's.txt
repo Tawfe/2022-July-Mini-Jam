@@ -1,5 +1,20 @@
-- Wall tiles with no top and bottom edges, and different frames represent the wall being hit
+(DONE) - Wall tiles with no top and bottom edges, and different frames represent the wall being hit
 (DONE) - key dropping when E is pressed
 - animation for key thrown instead of destroy when unlocking door
-- doors/frames 32x32
-- Parallax background
+(DONE) - doors/frames 32x32
+(DONE) - Parallax background
+- menu
+- polish the UI
+- levels
+
+MISSINGS:
+(DONE) 1- Yellow character (high priority)
+2- Switching character animation
+(DONE) 3- rainbow + grey special ability animation
+4- key pickup for all characters
+5- rock throw animation for orange character
+6- jumping animation for all characters (low priority)
+7- key thrown when opening door animation for all characters
+(DONE) 8- 16x16 vine sprite
+9- 16x16 animated water sprite
+10- a vine gate (opens when player turns the level on by throwing a rock on it)

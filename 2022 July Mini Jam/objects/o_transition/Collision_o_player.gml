@@ -1,5 +1,2 @@
-if (room == r_level1)
-{
-	target = r_level2
+//setting the target in the object's creation code	
 	TransitionStart(target, sqFadeOut, sqFadeIn)
-}
