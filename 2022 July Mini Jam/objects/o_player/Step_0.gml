@@ -284,6 +284,22 @@ if (place_meeting(x, y+vsp, o_platform))
 	{
 		global.key_reveal = true
 	}
-	
+	#region // Swimming Ability
+	if global.p_color == "Blue" && place_meeting(x,y,o_water)
+	{
+		global.ability_on = true
+		sprite_index = s_blue_swim
+	}
+	else if global.p_color == "Blue" && !place_meeting(x,y,o_water)
+	{
+		global.ability_on = false
+	}
+	else if global.p_color != "Blue" && place_meeting(x,y,o_water)
+	{
+		reTarget = room
+		TransitionStart(reTarget, sqFadedeathOut, sqFadedeathIn)
+		room_restart()
+	}
+	#endregion
 	x += hsp;
 	y += vsp;

@@ -1,16 +1,15 @@
 {
-  "name": "o_water",
   "spriteId": {
     "name": "s_water",
     "path": "sprites/s_water/s_water.yy",
   },
-  "spriteMaskId": null,
-  "visible": true,
   "solid": false,
-  "persistent": false,
-  "physicsObject": false,
+  "visible": true,
   "managed": true,
+  "spriteMaskId": null,
+  "persistent": false,
   "parentObjectId": null,
+  "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsGroup": 1,
@@ -33,6 +32,7 @@
     "path": "folders/Objects/Obstacle Colors.yy",
   },
   "resourceVersion": "1.0",
+  "name": "o_water",
   "tags": [],
   "resourceType": "GMObject",
 }

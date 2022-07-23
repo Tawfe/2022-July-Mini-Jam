@@ -2,3 +2,4 @@
 (DONE) - key dropping when E is pressed
 - animation for key thrown instead of destroy when unlocking door
 - doors/frames 32x32
+- Parallax background
