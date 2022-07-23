@@ -1,9 +1,4 @@
 {
-  "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
-  },
-  "name": "t_dirt_tiles",
   "spriteId": {
     "name": "s_platforms_tileset",
     "path": "sprites/s_platforms_tileset/s_platforms_tileset.yy",
@@ -14,9 +9,13 @@
   "tileyoff": 0,
   "tilehsep": 0,
   "tilevsep": 0,
+  "spriteNoExport": true,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default",
+  },
   "out_tilehborder": 2,
   "out_tilevborder": 2,
-  "spriteNoExport": true,
   "out_columns": 3,
   "tile_count": 8,
   "autoTileSets": [],
@@ -45,6 +44,7 @@
     "path": "folders/Tile Sets.yy",
   },
   "resourceVersion": "1.0",
+  "name": "t_dirt_tiles",
   "tags": [],
   "resourceType": "GMTileSet",
 }
