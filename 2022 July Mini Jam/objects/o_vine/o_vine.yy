@@ -1,16 +1,15 @@
 {
-  "name": "o_vine",
   "spriteId": {
     "name": "s_vine",
     "path": "sprites/s_vine/s_vine.yy",
   },
-  "spriteMaskId": null,
-  "visible": true,
   "solid": false,
-  "persistent": false,
-  "physicsObject": false,
+  "visible": true,
   "managed": true,
+  "spriteMaskId": null,
+  "persistent": false,
   "parentObjectId": null,
+  "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsGroup": 1,
@@ -34,6 +33,7 @@
     "path": "folders/Objects/Obstacle Colors.yy",
   },
   "resourceVersion": "1.0",
+  "name": "o_vine",
   "tags": [],
   "resourceType": "GMObject",
 }

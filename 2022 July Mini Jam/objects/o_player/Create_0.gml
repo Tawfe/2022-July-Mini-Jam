@@ -1,7 +1,7 @@
 hsp = 0;
 vsp = 0;
 grv = 0.3;
-walksp = 4;
+walksp = 4; // def = 1
 hascontrol = true;
 canjump = 0;
 jump_count = 1
@@ -22,4 +22,7 @@ s_cd = 60*2 // 60 * 5 default
 global.switching_cooldown = 0 //60*5 seconds cooldown
 global.is_punching = false
 global.key_reveal = false
-x_prev = x
+global.ability_on = false
+
+_act = 20
+trunk_collide = false

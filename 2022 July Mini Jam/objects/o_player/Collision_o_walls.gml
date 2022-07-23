@@ -1,1 +1,4 @@
-if global.is_punching instance_destroy(other)
+if global.ability_on && global.p_color == "Red"
+{
+	trunk_collide = true
+}

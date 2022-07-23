@@ -117,8 +117,8 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	if keyboard_check_pressed(ord("6")) && global.switching_cooldown <= 0
 	{
-		global.p_color = "bw"; //Black and White
-		if global.has_key global.key_color = "bw"
+		global.p_color = "Grey"; //Black and White
+		if global.has_key global.key_color = "Grey"
 		global.switching_cooldown = s_cd; 
 	}
 	if keyboard_check_pressed(ord("7")) && global.switching_cooldown <= 0
@@ -129,21 +129,25 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	#endregion
 	#region//Punching
-	if !global.is_punching x_prev = x
+	
 	if global.p_color == "Red" && keyboard_check_pressed(ord("F"))
 	{
+		global.ability_on = true
 		global.is_punching = true
 		
-		x += 20	
+	}
+	if global.p_color == "Red" && global.ability_on
+	{
+		sprite_index = s_red_punch
+		image_speed = 1
+		if image_index >= 3
+		{
+			sprite_index = s_red_idle
+			global.ability_on = false
+			if trunk_collide global.trunk_hitpoints--
+		}
 	}
 	
-	if global.is_punching
-	{
-		x = lerp(x,x_prev,0.1)
-		
-		if x <= x_prev - 5 global.is_punching = false
-	}
-	//show_debug_message(x)
 	#endregion
 	#region//Key Pickup
 	if global.key_in_range && keyboard_check_pressed(ord("E"))
@@ -168,15 +172,100 @@ if (place_meeting(x, y+vsp, o_platform))
 	if global.p_color == "Green" && keyboard_check_pressed(ord("F"))
 	{
 			instance_destroy(o_vine)
-			instance_create_layer(x+10,y,"Platforms",o_vine)	
+			
+			global.ability_on = true
+			if image_xscale == 1 instance_create_layer(x+10,y,"Platforms",o_vine)
+			else if image_xscale == -1 instance_create_layer(x-26,y,"Platforms",o_vine)
+	}
+	if global.p_color == "Green" && global.ability_on
+	{
+		sprite_index = s_green_plant
+		image_speed = 1
+		if image_index >= 3
+		{
+			sprite_index = s_green_idle
+			global.ability_on = false
+				
+		}
+	}
+	#endregion
+	#region //Animation
+	if !global.ability_on
+	{
+		if hsp == 0 && global.p_color = "Red"
+		{
+			sprite_index = s_red_idle;
+		}
+		else if hsp != 0 && global.p_color = "Red"
+		{
+			
+			sprite_index = s_red_run;
+		}
+		else if hsp == 0 && global.p_color = "Blue"
+		{
+			
+			sprite_index = s_blue_idle;
+		}
+		else if hsp != 0 && global.p_color = "Blue"
+		{
+			
+			sprite_index = s_blue_run;
+		}
+		else if hsp == 0 && global.p_color = "Green"
+		{
+			
+			sprite_index = s_green_idle;
+		}
+		else if hsp != 0 && global.p_color = "Green"
+		{
+			
+			sprite_index = s_green_run;
+		}
+		else if hsp == 0 && global.p_color = "Orange"
+		{
+			
+			sprite_index = s_orange_idle;
+		}
+		else if hsp != 0 && global.p_color = "Orange"
+		{
+			
+			sprite_index = s_orange_run;
+		}
+		else if hsp == 0 && global.p_color = "Grey"
+		{
+			
+			sprite_index = s_grey_idle;
+		}
+		else if hsp != 0 && global.p_color = "Grey"
+		{
+			
+			sprite_index = s_grey_run;
+		}
+		else if hsp == 0 && global.p_color = "Rainbow"
+		{
+			
+			sprite_index = s_rainbow_idle;
+		}
+		else if hsp != 0 && global.p_color = "Rainbow"
+		{
+			
+			sprite_index = s_rainbow_run;
+		}
 	}
 	#endregion
 	if instance_exists(o_vine) // Vine Climbing
 	{
 		if global.p_on_vine && keyboard_check(ord("W"))
 		{
-			key_up = keyboard_check(ord("W"))
-			vsp = -key_up
+			if (!place_meeting(x, y+vsp, o_platform)) 
+			{
+				while (place_meeting(x, y+sign(vsp), o_platform)) 
+				{
+					y += sign(vsp);
+				}
+				key_up = keyboard_check(ord("W"))
+				vsp = -key_up
+			}
 		}
 	}
 	if instance_exists(o_rock) //Rock Throwing
@@ -191,7 +280,7 @@ if (place_meeting(x, y+vsp, o_platform))
 			global.throw_rock =  true
 		}
 	}
-	if global.p_color == "bw" && keyboard_check_pressed(ord("T"))
+	if global.p_color == "Grey" && keyboard_check_pressed(ord("T"))
 	{
 		global.key_reveal = true
 	}
