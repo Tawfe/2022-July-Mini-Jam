@@ -24,6 +24,7 @@
     {"id":{"name":"s_rainbow_idle","path":"sprites/s_rainbow_idle/s_rainbow_idle.yy",},"order":0,},
     {"id":{"name":"o_walls","path":"objects/o_walls/o_walls.yy",},"order":1,},
     {"id":{"name":"s_lever","path":"sprites/s_lever/s_lever.yy",},"order":15,},
+    {"id":{"name":"o_camera","path":"objects/o_camera/o_camera.yy",},"order":16,},
     {"id":{"name":"s_grey_run","path":"sprites/s_grey_run/s_grey_run.yy",},"order":1,},
     {"id":{"name":"t_dirt_tiles","path":"tilesets/t_dirt_tiles/t_dirt_tiles.yy",},"order":0,},
     {"id":{"name":"s_background_2","path":"sprites/s_background_2/s_background_2.yy",},"order":2,},
