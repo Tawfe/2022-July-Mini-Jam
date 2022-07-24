@@ -14,4 +14,3 @@ else if global.trunk_hitpoints  <= 0
 {
 	instance_destroy()
 }
-show_debug_message(global.trunk_hitpoints)

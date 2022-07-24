@@ -1,3 +1,4 @@
+#region Movement
 // Get Player Input
 if (hascontrol)
 {
@@ -37,11 +38,14 @@ if   (key_jump) && jump_count > 0
 	vsp = jump_power;
 	//canjump = 0;
 	jump_count--
+	is_jumping = true
+	sprite_index = s_blue_jump
 	
 	audio_play_sound(Player_Jump,10,false)
 }
-show_debug_message(jump_count)
-
+//Jumping frame
+//if vsp != 0 sprite_index = s_blue_jump
+#endregion
 	#region //Collisions
 //Horizontal Collision
 for(var i = 0; i < array_length(vc_objects); i++)
@@ -75,9 +79,14 @@ for(var i = 0; i < array_length(vc_objects); i++)
 //Vertical Collision	
 if (place_meeting(x, y+vsp, o_platform)) 
 {
+	
 	if (place_meeting(x, bbox_bottom, o_platform)) // to prevent multi-jump when hitting the roof
 	{
+		if is_jumping 
+		{
+			is_jumping = false
 		
+		}
 		canjump = 10
 		if global.p_color != "Yellow" && jump_count <= 0 jump_count = 1
 		if global.p_color == "Yellow" && jump_count <= 0 jump_count = 2 // set up is in color change region
@@ -106,6 +115,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("1")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_red_chosen global.death = true
+		prev_red_chosen = true
 		global.p_color = "Red";
 		if global.has_key global.key_color = "Red"
 		global.red_ability = true
@@ -114,6 +126,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("2")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_blue_chosen global.death = true
+		prev_blue_chosen = true
 		global.p_color = "Blue"; 
 		if global.has_key global.key_color = "Blue"
 		global.switching_cooldown = s_cd; 
@@ -121,6 +136,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("3")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_yellow_chosen global.death = true
+		prev_yellow_chosen = true
 		global.p_color = "Yellow";
 		if global.has_key global.key_color = "Yellow"
 		jump_count = 2
@@ -129,6 +147,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("4")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_orange_chosen global.death = true
+		prev_orange_chosen = true
 		global.p_color = "Orange"; 
 		if global.has_key global.key_color = "Orange"
 		global.switching_cooldown = s_cd; 
@@ -136,6 +157,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("5")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_green_chosen global.death = true
+		prev_green_chosen = true
 		global.p_color = "Green";
 		if global.has_key global.key_color = "Green"
 		global.switching_cooldown = s_cd;
@@ -143,6 +167,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("6")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_grey_chosen global.death = true
+		prev_grey_chosen = true
 		global.p_color = "Grey"; //Black and White
 		if global.has_key global.key_color = "Grey"
 		global.switching_cooldown = s_cd; 
@@ -150,6 +177,9 @@ if (place_meeting(x, y+vsp, o_platform))
 	if keyboard_check_pressed(ord("7")) && global.switching_cooldown <= 0
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
+		color_change_trigger = true
+		if prev_rainbow_chosen global.death = true
+		prev_rainbow_chosen = true
 		global.p_color = "Rainbow";
 		if global.has_key global.key_color = "Rainbow"
 		global.switching_cooldown = s_cd;
@@ -187,11 +217,39 @@ if (place_meeting(x, y+vsp, o_platform))
 	if global.key_in_range && keyboard_check_pressed(ord("E"))
 	{
 		global.has_key = true
+		for(var i = 0; i < array_length(cc); i++)
+		{
+			if global.p_color == cc[i]
+			{
+				sprite_index = gk_sprite[i]
+				keygrab_sprite_temp = gk_sprite[i]
+				break;
+			}
+		}
+		
+		
 	}
 	if global.has_key && keyboard_check_pressed(ord("Q"))
 	{
 		global.has_key = false
 	}
+	
+	if sprite_index == keygrab_sprite_temp && image_index == 1
+	{
+		image_index = 1 
+		image_speed = 0
+		for(var i = 0; i < array_length(cc); i++)
+		{
+			if global.p_color == cc[i]
+			{
+				sprite_index = gk_sprite[i]
+				keygrab_sprite_temp = gk_sprite[i]
+				break;
+			}
+		}	
+	}
+	else image_speed = 1
+	
 	#endregion
 	#region//Unlock Door
 	if global.in_unlockable_range && global.has_key && global.key_color == global.lock_color
@@ -203,32 +261,43 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	#endregion
 	#region//Create a vine when Green is selected
-	if global.p_color == "Green" && keyboard_check_pressed(ord("F"))
+	if (global.p_color == "Green" || global.p_color == "Rainbow") && keyboard_check_pressed(ord("F"))
 	{
 			instance_destroy(o_vine)
 			
 			global.ability_on = true
-			if image_xscale == 1 instance_create_layer(x+10,y,"Platforms",o_vine)
-			else if image_xscale == -1 instance_create_layer(x-26,y,"Platforms",o_vine)
+			if image_xscale == 1 instance_create_layer(x+10,y+10,"Platforms",o_vine)
+			else if image_xscale == -1 instance_create_layer(x-26,y+10,"Platforms",o_vine)
 	}
-	if global.p_color == "Green" && global.ability_on
+	if (global.p_color == "Green" || global.p_color == "Rainbow") && global.ability_on
 	{
-		sprite_index = s_green_plant
+		if global.p_color == "Green" sprite_index = s_green_plant
+		if global.p_color == "Rainbow" sprite_index = s_rainbow_plant
 		image_speed = 1
 		if image_index >= 3
 		{
-			sprite_index = s_green_idle
+			if global.p_color == "Green" sprite_index = s_green_idle
+			if global.p_color == "Rainbow" sprite_index = s_rainbow_idle
 			global.ability_on = false
 				
 		}
 	}
 	#endregion
 	#region //Animation
-	if !global.ability_on && !global.death
+	if !global.ability_on && !global.death && !global.has_key && !is_jumping
 	{
 		if hsp == 0 && global.p_color = "Red"
 		{
-			sprite_index = s_red_idle;
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_red_idle
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_red_idle
 		}
 		else if hsp != 0 && global.p_color = "Red"
 		{
@@ -237,8 +306,17 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Blue"
 		{
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_blue_idle;
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_blue_idle
 			
-			sprite_index = s_blue_idle;
 		}
 		else if hsp != 0 && global.p_color = "Blue"
 		{
@@ -247,8 +325,16 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Yellow"
 		{
-			
-			sprite_index = s_yellow_idle;
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_yellow_idle
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_yellow_idle
 		}
 		else if hsp != 0 && global.p_color = "Yellow"
 		{
@@ -257,8 +343,17 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Green"
 		{
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_green_idle;
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_green_idle;
 			
-			sprite_index = s_green_idle;
 		}
 		else if hsp != 0 && global.p_color = "Green"
 		{
@@ -267,8 +362,17 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Orange"
 		{
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_orange_idle;
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_orange_idle;
 			
-			sprite_index = s_orange_idle;
 		}
 		else if hsp != 0 && global.p_color = "Orange"
 		{
@@ -277,8 +381,17 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Grey"
 		{
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_grey_idle;
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_grey_idle;
 			
-			sprite_index = s_grey_idle;
 		}
 		else if hsp != 0 && global.p_color = "Grey"
 		{
@@ -287,8 +400,17 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Rainbow"
 		{
+			if color_change_trigger
+			{
+				sprite_index = s_color_change
+				if sprite_index == s_color_change && image_index >= 2
+				{
+					color_change_trigger = false
+					sprite_index = s_rainbow_idle;
+				}
+			}
+			if sprite_index != s_color_change sprite_index = s_rainbow_idle;
 			
-			sprite_index = s_rainbow_idle;
 		}
 		else if hsp != 0 && global.p_color = "Rainbow"
 		{
@@ -301,6 +423,8 @@ if (place_meeting(x, y+vsp, o_platform))
 	{
 		if global.p_on_vine && keyboard_check(ord("W"))
 		{
+			if global.p_color == "Green" sprite_index = s_green_climb
+			if global.p_color == "Rainbow" sprite_index = s_rainbow_climb
 			if (!place_meeting(x, y+vsp, o_platform)) 
 			{
 				while (place_meeting(x, y+sign(vsp), o_platform)) 
@@ -379,6 +503,21 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 	}
 	#endregion
+	
+	#region Death
+	if global.death
+	{
+		if !die
+		{
+			die = true
+			instance_create_layer(x,y,"Instances",o_lighting)
+			walksp = 0	
+		}
+	}
+	#endregion
+	
+	//Destroy vine if exists when color changes
+	if instance_exists(o_vine) && color_change_trigger instance_destroy(o_vine)
 	
 	x += hsp;
 	y += vsp;

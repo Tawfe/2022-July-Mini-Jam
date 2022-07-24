@@ -1,0 +1,1 @@
+if global.p_color == "Blue" global.blue_pass = true else global.blue_pass = false
