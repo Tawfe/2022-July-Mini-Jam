@@ -18,6 +18,12 @@ else
 			y += sign(_kvsp);
 		}
 		_kvsp = 0
+		if !_keydrop_fxcontrol
+		{
+			_keydrop_fxcontrol = true
+			audio_play_sound(Rock_key_Land,10,false)
+		}
+		
 	}
 	
 	y += _kvsp //gravity when key is dropped
@@ -53,3 +59,21 @@ if global.key_color == "Orange"
 }
 
 if global.door_opened instance_destroy() // animation for key thrown instead of destroy
+
+
+
+if global.has_key
+{
+	 
+	if !_key_fxcontrol 
+	{
+		_key_fxcontrol = true
+		_keydrop_fxcontrol = false
+		audio_play_sound(Key_equip,10,false)
+	}
+}
+else
+{
+	_key_fxcontrol = false
+	
+}

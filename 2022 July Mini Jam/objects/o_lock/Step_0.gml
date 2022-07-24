@@ -14,7 +14,13 @@ if global.door_opened
 		_lvsp = 0
 	}
 	
-	y += _lvsp //gravity when key is dropped
+	y += _lvsp //gravity when lock is unlocked
+	
+	if !_p_lock_fxcontrol
+	{
+		_p_lock_fxcontrol = true
+		audio_play_sound(Door_Unlock,10,false)
+	}
 }
 
 if global.lock_color == "Red"

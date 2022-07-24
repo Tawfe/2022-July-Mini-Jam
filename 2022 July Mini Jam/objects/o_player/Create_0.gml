@@ -1,10 +1,11 @@
 hsp = 0;
 vsp = 0;
 grv = 0.3;
-walksp = 4; // def = 1
+walksp = 1; // def = 1
 hascontrol = true;
 canjump = 0;
 jump_count = 1
+jump_power = -5
 //Objects that can have vertical collision
 vc_objects[0] = o_platform
 vc_objects[1] = o_door_trigger
@@ -26,5 +27,12 @@ global.key_reveal = false
 global.ability_on = false
 global.vinegate_open = false
 global.death = false
+
 lighting_on = false
-trunk_collide = false
+
+_p_land_fxcontrol = true
+_p_punch_fxcontrol = false
+_p_death_fxcontrol = false
+
+_p_wcd = 21
+_p_walk_fxcontrol = _p_wcd

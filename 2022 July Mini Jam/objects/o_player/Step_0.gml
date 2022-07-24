@@ -16,6 +16,17 @@ var move = key_right - key_left;
 if move > 0 image_xscale = 1 else if move < 0 image_xscale = -1
 hsp = move * walksp;
 
+if hsp != 0 && vsp = 0
+{
+	_p_walk_fxcontrol--
+	
+	if !audio_is_playing(Player_Step_Single) && _p_walk_fxcontrol <= 0
+	{
+		
+		  audio_play_sound(Player_Step_Single,10,false)
+		  _p_walk_fxcontrol = _p_wcd
+	}
+}
 //Gravity
 vsp = vsp + grv;
 
@@ -23,9 +34,11 @@ vsp = vsp + grv;
 canjump--;
 if   (key_jump) && jump_count > 0
 {
-	vsp = -9;
+	vsp = jump_power;
 	//canjump = 0;
 	jump_count--
+	
+	audio_play_sound(Player_Jump,10,false)
 }
 show_debug_message(jump_count)
 
@@ -64,13 +77,20 @@ if (place_meeting(x, y+vsp, o_platform))
 {
 	if (place_meeting(x, bbox_bottom, o_platform)) // to prevent multi-jump when hitting the roof
 	{
+		
 		canjump = 10
 		if global.p_color != "Yellow" && jump_count <= 0 jump_count = 1
 		if global.p_color == "Yellow" && jump_count <= 0 jump_count = 2 // set up is in color change region
+		if !_p_land_fxcontrol
+		{
+			_p_land_fxcontrol = true
+			audio_play_sound(Player_Land,10,false)
+		}
 	}
 	while (!place_meeting(x, y+sign(vsp), o_platform)) 
 	{
 		y += sign(vsp);
+		_p_land_fxcontrol = false
 	}
 	
 	vsp = 0;
@@ -85,6 +105,7 @@ if (place_meeting(x, y+vsp, o_platform))
 	
 	if keyboard_check_pressed(ord("1")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Red";
 		if global.has_key global.key_color = "Red"
 		global.red_ability = true
@@ -92,12 +113,14 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	if keyboard_check_pressed(ord("2")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Blue"; 
 		if global.has_key global.key_color = "Blue"
 		global.switching_cooldown = s_cd; 
 	}
 	if keyboard_check_pressed(ord("3")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Yellow";
 		if global.has_key global.key_color = "Yellow"
 		jump_count = 2
@@ -105,24 +128,28 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	if keyboard_check_pressed(ord("4")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Orange"; 
 		if global.has_key global.key_color = "Orange"
 		global.switching_cooldown = s_cd; 
 	}
 	if keyboard_check_pressed(ord("5")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Green";
 		if global.has_key global.key_color = "Green"
 		global.switching_cooldown = s_cd;
 	}
 	if keyboard_check_pressed(ord("6")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Grey"; //Black and White
 		if global.has_key global.key_color = "Grey"
 		global.switching_cooldown = s_cd; 
 	}
 	if keyboard_check_pressed(ord("7")) && global.switching_cooldown <= 0
 	{
+		audio_play_sound(Player_Colour_Change,10,false)
 		global.p_color = "Rainbow";
 		if global.has_key global.key_color = "Rainbow"
 		global.switching_cooldown = s_cd;
@@ -138,13 +165,20 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	if global.p_color == "Red" && global.ability_on
 	{
+		
 		sprite_index = s_red_punch
 		image_speed = 1
 		if image_index >= 3
 		{
+			if place_meeting(x,y,o_walls) global.trunk_hitpoints--
 			sprite_index = s_red_idle
 			global.ability_on = false
-			if trunk_collide global.trunk_hitpoints--
+			_p_punch_fxcontrol = false
+		}
+		if !_p_punch_fxcontrol
+		{
+			_p_punch_fxcontrol = true
+			audio_play_sound(Player_Punch,10,false)
 		}
 	}
 	
@@ -320,12 +354,22 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	#endregion
 	#region Death / correlated with water for now
-	if place_meeting(x,y,o_lighting) sprite_index = s_death_anim
+	if place_meeting(x,y,o_lighting) 
+	{
+		if !_p_death_fxcontrol
+		{
+			_p_death_fxcontrol = true
+			audio_play_sound(Water_Death,10,false)
+		}
+		sprite_index = s_death_anim
+	}
+	
 	if sprite_index == s_death_anim && image_index > 6 
 	{
 		image_speed = 0
 		if global.has_key global.has_key = false
 		if global.has_rock global.has_rock = false
+		
 		d_cd--
 		if d_cd <= 0
 		{
