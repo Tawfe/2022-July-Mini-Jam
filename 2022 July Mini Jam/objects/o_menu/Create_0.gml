@@ -10,3 +10,7 @@ for(var i = 0; i < array_length(buttons); i++)
 		image_speed = 0
 	}
 }
+
+//in_empty_space = true
+audio_controller = 1
+in_button = false

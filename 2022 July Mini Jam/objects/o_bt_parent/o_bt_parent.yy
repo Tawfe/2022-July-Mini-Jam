@@ -1,17 +1,11 @@
 {
-  "spriteId": {
-    "name": "s_how_to_play_bt",
-    "path": "sprites/s_how_to_play_bt/s_how_to_play_bt.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": {
-    "name": "o_bt_parent",
-    "path": "objects/o_bt_parent/o_bt_parent.yy",
-  },
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -36,7 +30,7 @@
     "path": "folders/Objects/UI Buttons.yy",
   },
   "resourceVersion": "1.0",
-  "name": "o_how_to_play_bt",
+  "name": "o_bt_parent",
   "tags": [],
   "resourceType": "GMObject",
 }
