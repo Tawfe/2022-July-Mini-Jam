@@ -30,6 +30,15 @@ gk_sprite[6] = s_rainbow_grabkey
 
 keygrab_sprite_temp = s_red_grabkey //random def value
 
+//Jumping sprites for all characters
+jump_sprite[0] = s_red_jump
+jump_sprite[1] = s_blue_jump
+jump_sprite[2] = s_yellow_jump
+jump_sprite[3] = s_orange_jump
+jump_sprite[4] = s_grey_jump
+jump_sprite[5] = s_green_jump
+jump_sprite[6] = s_rainbow_jump
+
 global.p_color = "Red"
 global.has_key = false
 global.key_in_range = false

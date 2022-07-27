@@ -1,0 +1,1 @@
+text = "Objectives: \n1. Find the key \n2. Match the key color with the lock color \n3. Match the character color with the door frame color"

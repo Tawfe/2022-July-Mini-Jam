@@ -39,7 +39,15 @@ if   (key_jump) && jump_count > 0
 	//canjump = 0;
 	jump_count--
 	is_jumping = true
-	sprite_index = s_blue_jump
+	for(var i = 0; i < array_length(cc); i++)
+		{
+			if global.p_color == cc[i]
+			{
+				sprite_index = jump_sprite[i]
+				break;
+			}
+		}
+	
 	
 	audio_play_sound(Player_Jump,10,false)
 }
