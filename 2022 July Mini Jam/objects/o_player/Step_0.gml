@@ -292,7 +292,7 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	#endregion
 	#region //Animation
-	if !global.ability_on && !global.death && !global.has_key && !is_jumping
+	if !global.ability_on && !global.death && !global.has_key && !is_jumping && !global.has_rock && !global.throw_rock
 	{
 		if hsp == 0 && global.p_color = "Red"
 		{
@@ -444,16 +444,44 @@ if (place_meeting(x, y+vsp, o_platform))
 			}
 		}
 	}
-	if instance_exists(o_rock) //Rock Throwing
+	if instance_exists(o_rock) //Rock Functionality
 	{
-		if global.rock_in_range && keyboard_check_pressed(ord("E"))
+		if global.p_color == "Orange" && global.rock_in_range && keyboard_check_pressed(ord("E"))
 		{
 			global.has_rock = true
+		}
+		if global.has_rock && keyboard_check_pressed(ord("Q"))
+		{
+			global.has_rock = false
 		}
 		if global.has_rock && keyboard_check_pressed(ord("F"))
 		{
 			global.has_rock = false
 			global.throw_rock =  true
+		}
+		if global.has_rock
+		{
+			if !is_jumping && !global.throw_rock
+			{
+				if hsp == 0
+				{
+					sprite_index = s_orange_idle_rock
+				}
+				else if hsp != 0
+				{
+					sprite_index = s_orange_run_rock
+				}
+			}
+			else if is_jumping
+			{
+				sprite_index = s_orange_jump_rock
+			}
+			
+			if global.throw_rock
+			{
+				sprite_index = s_orange_throw_rock
+				if image_index >= 2 global.throw_rock = false
+			}
 		}
 	}
 	if global.p_color == "Grey" && keyboard_check_pressed(ord("T"))

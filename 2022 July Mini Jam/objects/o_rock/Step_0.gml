@@ -5,10 +5,11 @@ if global.has_rock
 {
 	x = o_player.x+3
 	y = o_player.y-4
+	visible = false
 }
 else
 {
-	
+	visible = true
 	if (place_meeting(x+_khsp, y, o_platform)) 
 	{
 		while (!place_meeting(x+sign(_khsp), y, o_platform)) 
@@ -40,6 +41,7 @@ if global.throw_rock
 	global.throw_rock = false
 }
 
+if _khsp > 0 _khsp = lerp(_khsp,0,0.05) // Horizontal velocity throwing power
 y += _kvsp 
 
 // make the rock get thrown based on the direction player is facing

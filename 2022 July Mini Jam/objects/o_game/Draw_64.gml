@@ -1,3 +1,4 @@
+draw_set_font(f_def)
 draw_set_valign(fa_center)
 draw_set_halign(fa_middle)
 //draw_text_transformed(80,80, global.p_color)
