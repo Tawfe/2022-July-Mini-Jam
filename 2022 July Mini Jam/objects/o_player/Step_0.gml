@@ -292,7 +292,7 @@ if (place_meeting(x, y+vsp, o_platform))
 	}
 	#endregion
 	#region //Animation
-	if !global.ability_on && !global.death && !global.has_key && !is_jumping && !global.has_rock && !global.throw_rock
+	if !global.ability_on && !global.death && !global.has_key && !is_jumping && !global.has_rock && !global.throw_rock && !global.key_reveal
 	{
 		if hsp == 0 && global.p_color = "Red"
 		{
@@ -484,10 +484,39 @@ if (place_meeting(x, y+vsp, o_platform))
 			}
 		}
 	}
-	if global.p_color == "Grey" && keyboard_check_pressed(ord("T"))
+	#region Grey SuperVision Ability
+	if global.p_color == "Grey" && keyboard_check(ord("F"))
 	{
 		global.key_reveal = true
+		sprite_index = s_grey_supervision
+		
+		if !grey_control show_debug_message(image_index)
+		if sprite_index == s_grey_supervision && image_index >= 3
+		{
+			image_index = 3
+			image_speed = 0
+		}
 	}
+	else if global.p_color == "Grey" && keyboard_check_released(ord("F"))
+	{
+		if global.key_reveal
+		{
+			
+			grey_control = true
+		}
+	}
+	
+	if grey_control
+	{
+			image_speed = 1
+			if sprite_index == s_grey_supervision && image_index >= 4
+			{
+				global.key_reveal = false
+				grey_control = false
+			}
+	}
+	
+	#endregion
 	#region // Swimming Ability
 	if (global.p_color == "Blue" || global.p_color == "Rainbow") && place_meeting(x,y,o_water)
 	{

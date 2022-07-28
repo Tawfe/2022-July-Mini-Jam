@@ -67,6 +67,8 @@ prev_rainbow_chosen = false
 lighting_on = false
 die = false
 
+grey_control = false
+
 _p_land_fxcontrol = true
 _p_punch_fxcontrol = false
 _p_death_fxcontrol = false
