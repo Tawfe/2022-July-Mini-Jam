@@ -1,8 +1,21 @@
 //Upd destination
-if instance_exists(follow)
+if instance_exists(global.follow)
 {
-	xTo = follow.x
-	yTo = follow.y
+	if global.follow == o_key
+	{
+		if !temp_controller
+		{
+			_temp_timer = 30
+			temp_controller = true
+		}
+		 _temp_timer--
+	}
+	if _temp_timer <= 0
+	{
+		temp_controller = false
+		xTo = global.follow.x
+		yTo = global.follow.y
+	}
 }
 
 //Upd obj Pos

@@ -490,15 +490,17 @@ if (place_meeting(x, y+vsp, o_platform))
 		global.key_reveal = true
 		sprite_index = s_grey_supervision
 		
-		if !grey_control show_debug_message(image_index)
+	
 		if sprite_index == s_grey_supervision && image_index >= 3
 		{
 			image_index = 3
 			image_speed = 0
 		}
+		global.follow = o_key
 	}
 	else if global.p_color == "Grey" && keyboard_check_released(ord("F"))
 	{
+		global.follow = o_player
 		if global.key_reveal
 		{
 			
