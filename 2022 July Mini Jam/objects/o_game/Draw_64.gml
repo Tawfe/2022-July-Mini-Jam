@@ -81,9 +81,3 @@ else
 }
 
 draw_text_transformed(320,40,global.switching_cooldown / 60,0.5,0.5,0)
-
-if global.key_reveal
-{
-	draw_sprite_ext(s_key_indicator,0,o_key.x,o_key.y+_pos,1,1,0,c_white,1)
-	
-}

@@ -5,14 +5,20 @@ if instance_exists(global.follow)
 	{
 		if !temp_controller
 		{
-			_temp_timer = 30
+			_temp_timer = 60
 			temp_controller = true
 		}
 		 _temp_timer--
-	}
+	
 	if _temp_timer <= 0
 	{
 		temp_controller = false
+		xTo = global.follow.x
+		yTo = global.follow.y
+	}
+	}
+	else
+	{
 		xTo = global.follow.x
 		yTo = global.follow.y
 	}
