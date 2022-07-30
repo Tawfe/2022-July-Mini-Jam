@@ -116,82 +116,7 @@ if (place_meeting(x, y+vsp, o_platform))
 //Blue Obscale collision
 //Kill the player if he attempts to go in blue obstacle without being blue
 #endregion
-	#region//Color Changing
-	if global.switching_cooldown > 0 global.switching_cooldown--
-	if global.p_color == "Red" global.red_ability = true else global.red_ability = false
-	
-	if keyboard_check_pressed(ord("1")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_red_chosen global.death = true
-		prev_red_chosen = true
-		global.p_color = "Red";
-		if global.has_key global.key_color = "Red"
-		global.red_ability = true
-		global.switching_cooldown = s_cd;
-	}
-	if keyboard_check_pressed(ord("2")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_blue_chosen global.death = true
-		prev_blue_chosen = true
-		global.p_color = "Blue"; 
-		if global.has_key global.key_color = "Blue"
-		global.switching_cooldown = s_cd; 
-	}
-	if keyboard_check_pressed(ord("3")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_yellow_chosen global.death = true
-		prev_yellow_chosen = true
-		global.p_color = "Yellow";
-		if global.has_key global.key_color = "Yellow"
-		jump_count = 2
-		global.switching_cooldown = s_cd;
-	}
-	if keyboard_check_pressed(ord("4")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_orange_chosen global.death = true
-		prev_orange_chosen = true
-		global.p_color = "Orange"; 
-		if global.has_key global.key_color = "Orange"
-		global.switching_cooldown = s_cd; 
-	}
-	if keyboard_check_pressed(ord("5")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_green_chosen global.death = true
-		prev_green_chosen = true
-		global.p_color = "Green";
-		if global.has_key global.key_color = "Green"
-		global.switching_cooldown = s_cd;
-	}
-	if keyboard_check_pressed(ord("6")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_grey_chosen global.death = true
-		prev_grey_chosen = true
-		global.p_color = "Grey"; //Black and White
-		if global.has_key global.key_color = "Grey"
-		global.switching_cooldown = s_cd; 
-	}
-	if keyboard_check_pressed(ord("7")) && global.switching_cooldown <= 0
-	{
-		audio_play_sound(Player_Colour_Change,10,false)
-		color_change_trigger = true
-		if prev_rainbow_chosen global.death = true
-		prev_rainbow_chosen = true
-		global.p_color = "Rainbow";
-		if global.has_key global.key_color = "Rainbow"
-		global.switching_cooldown = s_cd;
-	}
+	#region Color Changing mechanism been moved to Selection Wheel folder
 	#endregion
 	#region//Punching
 	
@@ -296,12 +221,12 @@ if (place_meeting(x, y+vsp, o_platform))
 	{
 		if hsp == 0 && global.p_color = "Red"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_red_idle
 				}
 			}
@@ -314,12 +239,12 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Blue"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_blue_idle;
 				}
 			}
@@ -333,12 +258,12 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Yellow"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_yellow_idle
 				}
 			}
@@ -351,12 +276,12 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Green"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_green_idle;
 				}
 			}
@@ -370,12 +295,12 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Orange"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_orange_idle;
 				}
 			}
@@ -389,12 +314,12 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Grey"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_grey_idle;
 				}
 			}
@@ -408,12 +333,12 @@ if (place_meeting(x, y+vsp, o_platform))
 		}
 		else if hsp == 0 && global.p_color = "Rainbow"
 		{
-			if color_change_trigger
+			if global.color_change_trigger
 			{
 				sprite_index = s_color_change
 				if sprite_index == s_color_change && image_index >= 2
 				{
-					color_change_trigger = false
+					global.color_change_trigger = false
 					sprite_index = s_rainbow_idle;
 				}
 			}
@@ -584,7 +509,7 @@ if (place_meeting(x, y+vsp, o_platform))
 	#endregion
 	
 	//Destroy vine if exists when color changes
-	if instance_exists(o_vine) && color_change_trigger instance_destroy(o_vine)
+	if instance_exists(o_vine) && global.color_change_trigger instance_destroy(o_vine)
 	
 	x += hsp;
 	y += vsp;

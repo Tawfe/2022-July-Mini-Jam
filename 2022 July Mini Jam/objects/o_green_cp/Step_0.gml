@@ -3,6 +3,21 @@ event_inherited()
 if position_meeting(mouse_x,mouse_y,self)
 {	
 	if temp_valh < clamp_val temp_valh = lerp(temp_valh,temp_valh+10,0.1)
+	#region//Color Changing
+	if global.switching_cooldown > 0 global.switching_cooldown--
+	
+	if mouse_check_button_pressed(mb_left) && global.switching_cooldown <= 0
+	{
+		audio_play_sound(Player_Colour_Change,10,false)
+		global.color_change_trigger = true
+		if prev_green_chosen global.death = true
+		prev_green_chosen = true
+		global.p_color = "Green";
+		if global.has_key global.key_color = "Green"
+		global.switching_cooldown = s_cd;
+	}
+	
+	#endregion
 }
 else 
 {

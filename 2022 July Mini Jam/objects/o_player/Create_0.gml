@@ -46,7 +46,7 @@ global.rock_in_range = false
 global.has_rock = false
 global.throw_rock = false
 global.red_ability = false
-s_cd = 1 // 60 * 5 default
+
 d_cd = 60
 global.switching_cooldown = 0 //60*5 seconds cooldown
 global.is_punching = false
@@ -56,13 +56,7 @@ global.vinegate_open = false
 global.death = false
 is_jumping = false
 
-prev_red_chosen = false
-prev_blue_chosen = false
-prev_green_chosen = false
-prev_yellow_chosen = false
-prev_grey_chosen = false
-prev_orange_chosen = false
-prev_rainbow_chosen = false
+
 
 lighting_on = false
 die = false
@@ -76,4 +70,6 @@ _p_death_fxcontrol = false
 _p_wcd = 21
 _p_walk_fxcontrol = _p_wcd
 
-color_change_trigger = false
+
+
+global.color_change_trigger = false
