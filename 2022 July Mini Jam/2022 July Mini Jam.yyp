@@ -207,9 +207,9 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"r_init","path":"rooms/r_init/r_init.yy",},},
-    {"roomId":{"name":"r_level1","path":"rooms/r_level1/r_level1.yy",},},
     {"roomId":{"name":"r_menu","path":"rooms/r_menu/r_menu.yy",},},
     {"roomId":{"name":"r_how_to_play","path":"rooms/r_how_to_play/r_how_to_play.yy",},},
+    {"roomId":{"name":"r_level1","path":"rooms/r_level1/r_level1.yy",},},
     {"roomId":{"name":"r_level2","path":"rooms/r_level2/r_level2.yy",},},
     {"roomId":{"name":"r_level3","path":"rooms/r_level3/r_level3.yy",},},
   ],

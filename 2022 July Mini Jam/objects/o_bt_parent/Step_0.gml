@@ -10,6 +10,7 @@ if position_meeting(mouse_x,mouse_y,self)
 			case noone: {game_end() break}
 			case r_level1: {TransitionStart(destination, sqFadeOut, sqFadeIn) break}
 			case r_how_to_play: {TransitionStart(destination, sqFadeOut, sqFadeIn) break}
+			default: break
 			
 		}
 	}
