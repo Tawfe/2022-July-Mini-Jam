@@ -2,6 +2,7 @@ event_inherited()
 
 if position_meeting(mouse_x,mouse_y,self)
 {	
+	draw_control = true
 	if temp_valw > clamp_val temp_valw = lerp(temp_valw,temp_valw-10,0.1)
 	#region//Color Changing
 	if global.switching_cooldown > 0 global.switching_cooldown--
@@ -10,18 +11,20 @@ if position_meeting(mouse_x,mouse_y,self)
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
 		global.color_change_trigger = true
-		if prev_yellow_chosen global.death = true
-		prev_yellow_chosen = true
+		if global.prev_yellow_chosen global.death = true
+		global.prev_yellow_chosen = true
 		global.p_color = "Yellow";
 		if global.has_key global.key_color = "Yellow"
 		jump_count = 2
 		global.switching_cooldown = s_cd;
+		choose_trigger = true
 	}
 	
 	#endregion
 }
 else 
 {
+	draw_control = false
 	clamp_val = temp_valw-10
 	x = o_selection_wheel.w_temp
 	y = o_selection_wheel.h_temp

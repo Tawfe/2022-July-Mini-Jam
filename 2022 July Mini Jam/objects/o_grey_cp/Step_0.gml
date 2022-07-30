@@ -2,6 +2,7 @@ event_inherited()
 
 if position_meeting(mouse_x,mouse_y,self)
 {	
+	draw_control = true
 	var _ww = temp_valw-10+lengthdir_x(temp_valw,135)
 	var _hh = temp_valh-10+lengthdir_y(temp_valh,135)
 	if temp_valw > clamp_val temp_valw = lerp(temp_valw,_ww,0.01)
@@ -14,17 +15,19 @@ if position_meeting(mouse_x,mouse_y,self)
 	{
 		audio_play_sound(Player_Colour_Change,10,false)
 		global.color_change_trigger = true
-		if prev_grey_chosen global.death = true
-		prev_grey_chosen = true
+		if global.prev_grey_chosen global.death = true
+		global.prev_grey_chosen = true
 		global.p_color = "Grey"; //Black and White
 		if global.has_key global.key_color = "Grey"
 		global.switching_cooldown = s_cd; 
+		choose_trigger = true
 	}
 	
 	#endregion
 }
 else 
 {
+	draw_control = false
 	clamp_val = temp_valw-10
 	clamp_valh = temp_valh-10
 	x = o_selection_wheel.w_temp

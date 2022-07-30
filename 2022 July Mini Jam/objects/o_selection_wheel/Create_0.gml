@@ -13,7 +13,3 @@ palettes[4] = o_orange_cp
 palettes[5] = o_grey_cp
 palettes[6] = o_rainbow_cp
 
-for(var i = 0; i < array_length(palettes);i++)
-	{
-		instance_create_layer(o_selection_wheel.x,o_selection_wheel.y,"ColorPalettes", palettes[i])	
-	}

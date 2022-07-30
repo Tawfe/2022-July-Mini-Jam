@@ -70,6 +70,12 @@ _p_death_fxcontrol = false
 _p_wcd = 21
 _p_walk_fxcontrol = _p_wcd
 
-
+global.prev_red_chosen = false
+global.prev_blue_chosen = false
+global.prev_green_chosen = false
+global.prev_yellow_chosen = false
+global.prev_grey_chosen = false
+global.prev_orange_chosen = false
+global.prev_rainbow_chosen = false
 
 global.color_change_trigger = false
